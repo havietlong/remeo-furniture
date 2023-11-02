@@ -1,3 +1,7 @@
+<?php 
+$user = session('user');
+$id = $user->id;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -208,9 +212,9 @@
                                                 <li>
                                                     <a href="/products/table"><span class="menu-item-text">Table</span></a>
                                                 </li>
-                                                <li>
+                                                <!-- <li>
                                                     <a href="/products/vase"><span class="menu-item-text">Vase</span></a>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </li>
                                         <!-- <li class="level-0 menu-item menu-item-has-children mega-menu mega-menu-fullwidth align-center">
@@ -405,10 +409,11 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <?php if(session('user')){ ?>
                                 <div class="search-box">
-                                    <a href="/user"><div class="search-toggle"><i class='bx bx-user-circle' style="font-size: 25px;"></i></div></a>
+                                    <a href="/user/{{$id}}"><div class="search-toggle"><i class='bx bx-user-circle' style="font-size: 25px;"></i></div></a>
                                 </div>
+                                <?php } ?>
                                 
                                 <div class="search-box">
                                     <div class="search-toggle"><i class="person-circle"></i></div>

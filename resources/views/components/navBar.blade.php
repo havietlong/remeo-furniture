@@ -209,9 +209,9 @@ $productsCart = [];
                                                 <li>
                                                     <a href="/products/table"><span class="menu-item-text">Table</span></a>
                                                 </li>
-                                                <li>
+                                                <!-- <li>
                                                     <a href="/products/vase"><span class="menu-item-text">Vase</span></a>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </li>
                                         <!-- <li class="level-0 menu-item menu-item-has-children mega-menu mega-menu-fullwidth align-center">

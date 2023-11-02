@@ -38,6 +38,8 @@ Route::post('/admin/product_delete/{id}', [ProductsController::class, 'destroy']
 Route::post('/admin/orders/order_cancel/{id}', [OrdersController::class, 'destroy']);
 Route::post('/admin/orders/order_approve/{id}', [OrdersController::class, 'approveOrder']);
 
+Route::post('/user/orders/cancel/{id}', [OrdersController::class, 'destroyUser']);
+
 // routes/api.php
 Route::get('/admin/orders/indexChartData',  [OrdersController::class, 'indexChartData']);
 Route::get('/admin/orders/indexChartData_Week',  [OrdersController::class, 'indexChartData_Week']);

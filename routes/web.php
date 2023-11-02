@@ -23,13 +23,12 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
+
 Route::get('/checkOut', function () {
     return view('checkOut');
 });
 
-Route::get('/user', function () {
-    return view('user');
-});
+Route::get('/user/{id}', 'OrdersController@index');
 
 Route::get('/admin', 'ProductsController@indexAdminDashboard');
 
@@ -42,6 +41,7 @@ Route::get('/admin/products', 'ProductsController@indexAdmin' );
 Route::get('/admin/product_detail/{id}','ProductsController@indexDetailAdmin');
 Route::get('/admin/orders','OrdersController@indexAdmin');
 Route::get('/admin/orders/order_detail/{id}', 'OrdersDetailController@displayOrder_DetailAdmin');
+Route::get('/user/orders/order_detail/{id}', 'OrdersDetailController@displayOrder_Detail');
 
 
 

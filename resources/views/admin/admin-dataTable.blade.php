@@ -102,7 +102,9 @@
                                                             </button>
                                                             <div class="dropdown-menu">
                                                                 <a class="dropdown-item" href="/admin/orders/order_detail/{{$order->id}}">View</a>
+                                                                <?php if($order->id_status == 1){ ?> 
                                                                 <div class="dropdown-divider"></div>
+                                                               
                                                                 <a class="dropdown-item">
                                                                     <form action="/api/admin/orders/order_cancel/{{$order->id}}" method="post">
                                                                         <button type="submit" style="outline: none;border:none;background-color: transparent;">Cancel Order</button>
@@ -113,6 +115,7 @@
                                                                         <button type="submit" style="outline: none;border:none;background-color: transparent;">Approve Order</button>
                                                                     </form>
                                                                 </a>
+                                                                <?php } ?>
                                                             </div>
                                                         </div>
                                                     </td>

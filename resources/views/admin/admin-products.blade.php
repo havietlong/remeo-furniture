@@ -274,7 +274,7 @@
                         <form action="/api/admin/product_add" method="post">
 
                             <h6 class="text-muted font_s_13 mt-2 mb-1">Name</h6>
-                            <input name="name">
+                            <input name="name" required>
 
                             <h6 class="text-muted font_s_13 mt-2 mb-1">Price</h6>
                             <div class="input-group mb-3">
@@ -282,19 +282,21 @@
                                     <span class="input-group-text">$</span>
                                     <!-- <span class="input-group-text">0.00</span> -->
                                 </div>
-                                <input name="price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input required name="price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                             </div>
                             <h6 class="text-muted font_s_13 mt-2 mb-1">Image</h6>
-                            <input name="image" style="width: 100%;">
+                            <input required name="image" style="width: 100%;">
                             <h6 class="text-muted font_s_13 mt-2 mb-1">Category</h6>
                             <select name="id_category" class="form-select" aria-label="Default select example">
                                 <option selected>Category</option>
                                 <option value="2">Chair</option>
-                                <option value="1">Table</option>
+                                <option value="1">Table</option>                            
+                                <option value="4">Sofa</option>
+                                <option value="3">Table</option>
                                 <!-- <option value="3">Three</option> -->
                             </select>
                             <h6 class="text-muted font_s_13 mt-2 mb-1">Description</h6>
-                            <input name="description" style="width: 100%; height: 150px;"></input>
+                            <input required name="description" style="width: 100%; height: 150px;"></input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" type="button" class="btn btn-primary">Save</button>

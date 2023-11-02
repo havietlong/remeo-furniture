@@ -11,9 +11,14 @@ class OrdersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(String $id)
     {
-        //
+        $orders = orders::where('id_user',$id)
+        ->join('status', 'orders.id_status', '=', 'status.id')
+        ->select('orders.*','status.name')
+        ->get();
+        return view('user', ['orders' => $orders]);
+        // return view('admin.admin-dataTable', ['orders' => $orders]);
     }
 
     public function indexAdmin()
@@ -155,8 +160,24 @@ class OrdersController extends Controller
     public function destroy(String $id)
     {
         $order = Orders::where('id', $id)->first();
-        
-        if ($order) {
+        $order_status = $order->id_status;
+        if ($order&&$order_status!=3&&$order_status!=2) {
+            $order->id_status = 3;
+            $order->save();
+        }
+    
+        // Handle the case where the order with the specified ID was not found.
+        return redirect()->back();
+
+    }
+
+    public function destroyUser(String $id)
+    {
+        $order = Orders::where('id', $id)->first();
+        $order_status = $order->id_status;
+
+
+        if ($order&&$order_status!=3&&$order_status!=2) {
             $order->id_status = 3;
             $order->save();
         }

@@ -18,10 +18,10 @@ class OrdersDetailController extends Controller
     public function displayOrder_Detail(String $id)
     {
         $orderDetails = Orders_detail::where('id_order', $id)
-        ->join('products', 'orders_detail.id_product', '=', 'products.id_products')
+        ->join('products', 'orders_detail.id_product', '=', 'products.id')
         ->select('products.*', 'orders_detail.*')
         ->get();
-        return $orderDetails;
+        return view('user-orderDetail', ['orderDetails' => $orderDetails]);
     }
 
     public function displayOrder_DetailAdmin(String $id)
@@ -30,7 +30,7 @@ class OrdersDetailController extends Controller
         ->join('products', 'orders_detail.id_product', '=', 'products.id')
         ->select('products.*', 'orders_detail.*')
         ->get();
-        return view('admin.admin-dataTableDetail', ['orderDetails' => $orderDetails]);;
+        return view('admin.admin-dataTableDetail', ['orderDetails' => $orderDetails]);
     }
 
     /**

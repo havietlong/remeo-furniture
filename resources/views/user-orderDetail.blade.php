@@ -68,9 +68,9 @@
                                                     <a class="nav-link active" data-toggle="tab" href="#dashboard" role="tab">Dashboard</a>
                                                 </li> -->
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#orders" role="tab">Orders</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#orders" role="tab">Order Detail (Click to view your order)</a>
                                                 </li>
-                                                <li class="nav-item">
+                                                <!-- <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#addresses" role="tab">Addresses</a>
                                                 </li>
                                                 <li class="nav-item">
@@ -78,7 +78,7 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="page-login.html">Logout</a>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </nav>
                                         <div class="my-account-content tab-content">
@@ -98,28 +98,22 @@
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Order ID</th>
-                                                                    <th>Date</th>
-                                                                    <th>Status</th>
-                                                                    <th>Total</th>
-                                                                    <th colspan="2">Actions</th>
+                                                                    <th>Item ID</th>
+                                                                    <th>Image</th>
+                                                                    <th>Item</th>
+                                                                    <th>Price</th>
+                                                                    <th>Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($orders as $order)
+                                                                @foreach($orderDetails as $order)
                                                                 <tr>
                                                                     <td>{{$order->id}}</td>
-                                                                    <td>{{$order->created_at}}</td>
+                                                                    <td><img style="width: 200px;" src="{{$order->picture}}"></td>                                                                   
                                                                     <td>{{$order->name}}</td>
                                                                     <td>${{$order->price}}</td>
-                                                                    <td><a href="/user/orders/order_detail/{{$order->id}}" class="btn-small d-block">View</a></td>
-                                                                    <td>
-                                                                        <?php if($order->id_status==1){  ?>
-                                                                        <form action="/api/user/orders/cancel/{{$order->id}}" method="post">
-                                                                        <button style="cursor: pointer;background-color: transparent;">Cancel</button>
-                                                                        </form>
-                                                                        <?php } ?>
-                                                                    </td>
+                                                                    <td>{{$order->quantity}}</td>
+                                                                    
                                                                 </tr>
                                                                 @endforeach
                                                                 <!-- <tr>
