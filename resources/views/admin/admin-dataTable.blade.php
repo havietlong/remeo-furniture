@@ -54,7 +54,7 @@
                                 <div class="QA_section">
                                     <div class="white_box_tittle list_header">
                                         <h4>Orders</h4>
-                                        <div class="box_right d-flex lms_block">
+                                        <!-- <div class="box_right d-flex lms_block">
                                             <div class="serach_field_2">
                                                 <div class="search_inner">
                                                     <form Active="#">
@@ -68,7 +68,7 @@
                                             <div class="add_button ms-2">
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#addcategory" class="btn_1">Add New</a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="QA_table mb_30">
 

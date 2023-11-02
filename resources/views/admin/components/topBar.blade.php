@@ -19,7 +19,7 @@
                         </label>
                         <div class="header_right d-flex justify-content-between align-items-center">
                             <div class="header_notification_warp d-flex align-items-center">
-                                <li>
+                                <!-- <li>
                                     <div class="serach_button">
                                         <i class="ti-search"></i>
                                         <div class="serach_field-area d-flex align-items-center">
@@ -34,7 +34,7 @@
                                             <span class="f_s_14 f_w_400 ml_25 white_text text_white">Apps</span>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
                                 <!-- <li>
                                     <a class="bell_notification_clicker" href="#"> <img src="img/icon/bell.svg" alt>
                                         <span>2</span>

@@ -1,8 +1,4 @@
-<?php
-echo($products);
-echo(session('user'));
-echo(session('total'));
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,14 +47,14 @@ echo(session('total'));
                 <div id="primary" class="content-area">
                     <div id="title" class="page-title">
                         <div class="section-container">
-                            <div class="content-title-heading">
+                            <!-- <div class="content-title-heading">
                                 <h1 class="text-title-heading">
                                     Bed &amp; Bath
                                 </h1>
                             </div>
                             <div class="breadcrumbs">
                                 <a href="index.html">Home</a><span class="delimiter"></span><a href="shop-grid-left.html">Shop</a><span class="delimiter"></span>Bed &amp; Bath
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -69,11 +65,11 @@ echo(session('total'));
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                         <div class="products-topbar clearfix">
                                             <div class="products-topbar-left">
-                                                <div class="products-count">
+                                                <!-- <div class="products-count">
                                                     Showing all 21 results
-                                                </div>
+                                                </div> -->
                                             </div>
-                                            <div class="products-topbar-right">
+                                            <!-- <div class="products-topbar-right">
                                                 <div class="products-sort dropdown">
                                                     <span class="sort-toggle dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Default sorting</span>
                                                     <ul class="sort-list dropdown-menu" x-placement="bottom-start">
@@ -93,27 +89,27 @@ echo(session('total'));
                                                         <a class="layout-list nav-link" data-toggle="tab" href="#layout-list" role="tab"><span class="icon-column"><span class="layer first"><span></span><span></span></span><span class="layer middle"><span></span><span></span></span><span class="layer last"><span></span><span></span></span></span></a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="layout-grid" role="tabpanel">
                                                 <div class="products-list grid">
                                                     <div class="row">
-                                                    @foreach ($products as $product)
+                                                        @foreach ($products as $product)
                                                         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                                                             <div class="products-entry clearfix product-wapper">
                                                                 <div class="products-thumb">
-                                                                    <div class="product-lable">
+                                                                    <!-- <div class="product-lable">
                                                                         <div class="hot">Hot</div>
-                                                                    </div>
-                                                                    <div class="product-thumb-hover">
-                                                                        <a href="/shop-details/{{ $product->id }}">
-                                                                            <img width="600" height="600" src="media/product/6.jpg" class="post-image" alt="">
-                                                                            <img width="600" height="600" src="media/product/6-2.jpg" class="hover-image back" alt="">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="product-button">
+                                                                    </div> -->
+
+                                                                    <a href="/shop-details/{{ $product->id }}">
+                                                                        <img width="600" height="600" src="{{$product->picture}}" class="hover-image back" alt="">
+
+                                                                    </a>
+
+                                                                    <!-- <div class="product-button">
                                                                         <div class="btn-add-to-cart" data-title="Add to cart">
                                                                             <a rel="nofollow" href="#" class="product-btn button">Add to cart</a>
                                                                         </div>
@@ -126,7 +122,7 @@ echo(session('total'));
                                                                         <span class="product-quickview" data-title="Quick View">
                                                                             <a href="#" class="quickview quickview-button">Quick View <i class="icon-search"></i></a>
                                                                         </span>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                                 <div class="products-content">
                                                                     <div class="contents text-center">
@@ -136,7 +132,7 @@ echo(session('total'));
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endforeach
+                                                        @endforeach
                                                         <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                                                             <div class="products-entry clearfix product-wapper">
                                                                 <div class="products-thumb">

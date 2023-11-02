@@ -63,7 +63,7 @@
                         <div class="white_card position-relative mb_20 ">
                             <div class="card-body">
                                 <!-- <div class="ribbon1 rib1-primary"><span class="text-white text-center rib1-primary">50% off</span></div> -->
-                                <img src="img/products/img-5.png" alt class="d-block mx-auto my-4" height="150">
+                                <img src="{{$product->picture}}" alt class="d-block mx-auto my-4" height="150">
                                 <div class="row my-4">
                                     <div class="col"><span class="badge_btn_3  mb-1">{{$product->category->name}}</span> <a href="#" class="f_w_400 color_text_3 f_s_14 d-block">{{$product->name}}</a></div>
                                     <div class="col-auto">

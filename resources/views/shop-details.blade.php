@@ -1,6 +1,4 @@
-<?php echo $products;
-var_dump(session('cart'));
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +66,7 @@ var_dump(session('cart'));
                                         <div class="row">
                                             <div class="product-images col-lg-7 col-md-12 col-12">
                                                 <div class="row">
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-2" style="visibility: hidden;">
                                                         <div class="content-thumbnail-scroll">
                                                             <div class="image-thumbnail slick-carousel slick-vertical" data-asnavfor=".image-additional" data-centermode="true" data-focusonselect="true" data-columns4="5" data-columns3="4" data-columns2="4" data-columns1="4" data-columns="4" data-nav="true" data-vertical="&quot;true&quot;" data-verticalswiping="&quot;true&quot;">
                                                                 <div class="img-item slick-slide">
@@ -103,20 +101,8 @@ var_dump(session('cart'));
                                                         <div class="scroll-image main-image">
                                                             <div class="image-additional slick-carousel" data-asnavfor=".image-thumbnail" data-fade="true" data-columns4="1" data-columns3="1" data-columns2="1" data-columns1="1" data-columns="1" data-nav="true">
                                                                 <div class="img-item slick-slide">
-                                                                    <img width="900" height="900" src="media/product/9.jpg" alt="" title="">
-                                                                </div>
-                                                                <div class="img-item slick-slide">
-                                                                    <img width="900" height="900" src="media/product/9-2.jpg" alt="" title="">
-                                                                </div>
-                                                                <div class="img-item slick-slide">
-                                                                    <img width="900" height="900" src="media/product/9-3.jpg" alt="" title="">
-                                                                </div>
-                                                                <div class="img-item slick-slide">
-                                                                    <img width="900" height="900" src="media/product/9.jpg" alt="" title="">
-                                                                </div>
-                                                                <div class="img-item slick-slide">
-                                                                    <img width="900" height="900" src="media/product/9-2.jpg" alt="" title="">
-                                                                </div>
+                                                                    <img width="900" height="900" src="{{$product->picture}}" alt="" title="">
+                                                                </div>                                                        
                                                             </div>
                                                         </div>
                                                     </div>
@@ -300,7 +286,7 @@ var_dump(session('cart'));
                                     </div>
                                 </div>
                             </div>
-                            <div class="product-related">
+                            <!-- <div class="product-related">
                                 <div class="section-padding">
                                     <div class="section-container p-l-r">
                                         <div class="block block-products slider">
@@ -525,7 +511,7 @@ var_dump(session('cart'));
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div><!-- #content -->
                 </div><!-- #primary -->

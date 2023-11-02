@@ -18,9 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/shop-details/{id}', 'ProductsController@indexDetail');
 Route::get('/products', 'ProductsController@index');
-Route::get('/products/{category}', function ($category) {
-    return view('shop')->with('productCategory', $category);
-});
+Route::get('/products/{category}', 'ProductsController@indexByCat');
 Route::get('/cart', function () {
     return view('cart');
 });
@@ -33,9 +31,7 @@ Route::get('/user', function () {
     return view('user');
 });
 
-Route::get('/admin', function () {
-    return view('admin.admin-dashboard');
-});
+Route::get('/admin', 'ProductsController@indexAdminDashboard');
 
 Route::get('/admin/products', 'ProductsController@indexAdmin' );
 

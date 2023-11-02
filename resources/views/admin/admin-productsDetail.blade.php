@@ -36,7 +36,7 @@
     @include('admin.components.sideBar')
 
     <section class="main_content dashboard_part large_header_bg">
-    @include('admin.components.topBar')
+        @include('admin.components.topBar')
 
         <div class="main_content_iner overly_inner ">
             <div class="container-fluid p-0 ">
@@ -47,7 +47,7 @@
                             <div class="page_title_left">
                                 <h3 class="f_s_30 f_w_700 dark_text">Product Details</h3>
                                 <ol class="breadcrumb page_bradcam mb-0">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin/products">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Product Details</li>
                                 </ol>
                             </div>
@@ -60,16 +60,17 @@
                         <div class="white_card position-relative mb_20">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6 align-self-center"><img src="img/products/01.png" alt class="mx-auto d-block" height="300" /></div>
+                                    @foreach($products as $product)
+                                    <div class="col-lg-6 align-self-center"><img src="{{$product->picture}}" alt class="mx-auto d-block" height="300" /></div>
 
                                     <div class="col-lg-6 align-self-center">
-                                        @foreach($products as $product)
+
                                         <div class="single-pro-detail">
                                             <form action="/api/admin/product_alter/{{$product->id}}" method="post">
                                                 <!-- <p class="mb-1">Dastyle</p> -->
                                                 <!-- <div class="custom-border mb-3"></div> -->
                                                 <h6 class="text-muted font_s_13 mt-2 mb-1">Name</h6>
-                                                <input name="name" value="{{$product->name}}">
+                                                <input name="name" value="{{$product->name}}">                   <button type="submit" class="btn btn-primary mb-3">Apply</button>
                                                 <!-- <h3 class="pro-title">{{$product->name}}</h3>
                                                 <p class="text-muted mb-0">Morden and good look model 2020</p>
                                                 <ul class="list-inline mb-2 product-review">
@@ -117,12 +118,12 @@
                                                     <input class="form-control form-control-sm" type="number" min="0" value="0" id="example-number-input" />
                                                     <a href class="btn theme_bg_6 text-white px-4 d-inline-block "><i class="fa fa-cart-plus me-2"></i>Add to Cart</a>
                                                 </div> -->
-                                                <button type="submit" class="btn btn-primary mb-3">Apply</button>
+                                               
                                             </form>
                                         </div>
-                                        @endforeach
-                                    </div>
 
+                                    </div>
+                                    @endforeach
                                 </div>
 
                             </div>
@@ -132,7 +133,7 @@
                     </div>
 
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="white_card position-relative mb_20">
                             <div class="card-body">
@@ -243,11 +244,11 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
-        <div class="footer_part">
+        <!-- <div class="footer_part">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -257,7 +258,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
 
