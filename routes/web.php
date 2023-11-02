@@ -45,6 +45,7 @@ Route::get('/admin/products', 'ProductsController@indexAdmin' );
 
 Route::get('/admin/product_detail/{id}','ProductsController@indexDetailAdmin');
 Route::get('/admin/orders','OrdersController@indexAdmin');
+Route::get('/admin/orders/order_detail/{id}', 'OrdersDetailController@displayOrder_DetailAdmin');
 
 
 

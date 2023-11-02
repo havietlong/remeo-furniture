@@ -28,6 +28,37 @@ class OrdersController extends Controller
             
     }
 
+    public function indexChartData()
+    {
+        $data = orders::selectRaw('DATE(created_at) as date, SUM(price) as total_price')
+        ->groupBy('date')
+        ->orderBy('date', 'asc')
+        ->get();
+
+    return response()->json($data);
+    }
+
+    public function indexChartData_Week()
+    { $data = orders::selectRaw('YEAR(created_at) as year, WEEK(created_at) as week, SUM(price) as total_price')
+        ->groupBy('year', 'week')
+        ->orderBy('year', 'asc')
+        ->orderBy('week', 'asc')
+        ->get();
+
+    return response()->json($data);
+    }
+
+    public function indexChartData_Month()
+{
+    $data = orders::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(price) as total_price')
+        ->groupBy('month')
+        ->orderBy('month', 'asc')
+        ->get();
+
+    return response()->json($data);
+}
+
+
     public function checkOut(Request $request)
     {
         $f_name = $request->input("first_name");
@@ -61,6 +92,20 @@ class OrdersController extends Controller
         
         return redirect()->back();
 
+
+    }
+
+    public function approveOrder(String $id)
+    {
+        $order = Orders::where('id', $id)->first();
+        
+        if ($order) {
+            $order->id_status = 2;
+            $order->save();
+        }
+    
+        // Handle the case where the order with the specified ID was not found.
+        return redirect()->back();
 
     }
 
@@ -107,8 +152,17 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Orders $orders)
+    public function destroy(String $id)
     {
-        //
+        $order = Orders::where('id', $id)->first();
+        
+        if ($order) {
+            $order->id_status = 3;
+            $order->save();
+        }
+    
+        // Handle the case where the order with the specified ID was not found.
+        return redirect()->back();
+
     }
 }

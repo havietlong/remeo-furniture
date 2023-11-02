@@ -9,4 +9,7 @@ class Orders extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
 }

@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('css/metisMenu.css') }}">
     <link rel="stylesheet" href="{{asset('css/style1.css') }}" />
     <link rel="stylesheet" href="{{asset('css/colors/default.css" id="colorSkinCSS') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body class="crm_body_bg">
@@ -36,7 +37,7 @@
     @include('admin.components.sideBar')
 
     <section class="main_content dashboard_part large_header_bg">
-        @include('admin.components.topBar')
+    @include('admin.components.topBar')
 
         <div class="main_content_iner ">
             <div class="container-fluid p-0">
@@ -53,72 +54,33 @@
                             <div class="white_card_body">
                                 <div class="QA_section">
                                     <div class="white_box_tittle list_header">
-                                        <h4>Orders</h4>
-                                        <div class="box_right d-flex lms_block">
-                                            <div class="serach_field_2">
-                                                <div class="search_inner">
-                                                    <form Active="#">
-                                                        <div class="search_field">
-                                                            <input type="text" placeholder="Search content here...">
-                                                        </div>
-                                                        <button type="submit"> <i class="ti-search"></i> </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div class="add_button ms-2">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#addcategory" class="btn_1">Add New</a>
-                                            </div>
-                                        </div>
+                                        <h4>Orders Detail</h4>                                       
                                     </div>
                                     <div class="QA_table mb_30">
 
-                                        <table class="table lms_table_active ">
+                                        <table class="table  ">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">id</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Time</th>
-                                                    <th scope="col">Address</th>
-                                                    <th scope="col">Phone number</th>
+                                                    <th scope="col">Item id</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Item</th>
+                                                    <th scope="col">Quantity</th>
                                                     <th scope="col">Price</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($orders as $order)
+                                                @foreach($orderDetails as $order)
                                                 <tr>
                                                     <th scope="row"> <a href="#" class="question_content">{{$order->id}}</a></th>
-                                                    <td>{{$order->receiver}}</td>
-                                                    <td>{{$order->created_at}}</td>
-                                                    <td>{{$order->address}}</td>
-                                                    <td>0{{$order->phone_number}}</td>
+                                                    <td><img src="{{$order->picture}}"></td>
+                                                    <td>{{$order->name}}</td>
+                                                    <td>{{$order->quantity}}</td>
                                                     <td>${{$order->price}}</td>
-                                                    <td><a href="#" class="status_btn">{{$order->name}}</a></td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                Action
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="/admin/orders/order_detail/{{$order->id}}">View</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item">
-                                                                    <form action="/api/admin/orders/order_cancel/{{$order->id}}" method="post">
-                                                                        <button type="submit" style="outline: none;border:none;background-color: transparent;">Cancel Order</button>
-                                                                    </form>
-                                                                </a>
-                                                                <a class="dropdown-item">
-                                                                    <form action="/api/admin/orders/order_approve/{{$order->id}}" method="post">
-                                                                        <button type="submit" style="outline: none;border:none;background-color: transparent;">Approve Order</button>
-                                                                    </form>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
                                                 </tr>
                                                 @endforeach
-                                                <!--
+
+                                                <a href="/admin/orders" ><i class='bx bxs-left-arrow-alt'></i><label class="col" style="cursor:pointer">Back</label></a>
+                                                 <!--
                                                 <tr>
                                                     <th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
                                                     <td>Category name</td>
