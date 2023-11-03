@@ -1,3 +1,9 @@
+<?php
+if(session('user')){
+    $user = session('user');
+    $id = $user->id;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

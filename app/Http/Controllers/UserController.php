@@ -15,12 +15,13 @@ class UserController extends Controller
         //
     }
 
-    public function validateLogin(Request $request){
+    public function validateLogin(Request $request)
+    {
         $credentials = $request->only('email', 'password');
-       
+
         // Retrieve the user record based on the provided email
         $user = User::where('email', $credentials['email'])->first();
-     
+
         $role = $user->id_role;
         if (!$user) {
             // Invalid email or user not found
@@ -31,24 +32,24 @@ class UserController extends Controller
                 // Invalid password
                 return response()->json(['message' => 'Invalid password'], 401);
             } else {
-                 
+
                 if ($role == 1 || $role === '1') {
                     // $this->createAdminSession($user);
                     // Login successful
                     session(['admin' => $user]);
                     return redirect('/admin');
-                }else {
+                } else {
                     // $this->createUserSession($user);
                     // Login successful
                     session(['user' => $user]);
-                   
+
                     return redirect('/');
                 }
             }
         }
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -92,8 +93,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( Request $request)
     {
-        //
+        // To destroy the 'user' session variable
+        $request->session()->forget('user');
+        return redirect()->back();
     }
 }

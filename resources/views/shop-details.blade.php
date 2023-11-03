@@ -1,3 +1,9 @@
+<?php
+if(session('user')){
+    $user = session('user');
+    $id = $user->id;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -161,15 +167,16 @@
                                                             <input name="name" value="{{$product->name}}" hidden>
                                                             <input name="price" value="{{$product->price}}" hidden>
                                                             <input name="id" value="{{$product->id}}" hidden>
+                                                            <input name="picture" value="{{$product->picture}}" hidden>
                                                             <!-- <div class="btn-add-to-cart"> -->
                                                                 <!-- <a type="submit" class="button" tabindex="0">Add to cart</a> -->
                                                                 <button type="submit" class="button" style="background-color: rgba(0,0,0.75);color:white;width: 150px;height: 50px;position:relative;bottom:19px;cursor: pointer;">Add to cart</button>
                                                             <!-- </div> -->
                                                         </form>
                                                     </div>
-                                                    <div class="btn-quick-buy" data-title="Wishlist">
+                                                    <!-- <div class="btn-quick-buy" data-title="Wishlist">
                                                         <button class="product-btn">Buy It Now</button>
-                                                    </div>
+                                                    </div> -->
                                                     <!-- <div class="btn-wishlist" data-title="Wishlist">
                                                         <button class="product-btn">Add to wishlist</button>
                                                     </div>

@@ -1,3 +1,9 @@
+<?php
+if(session('user')){
+    $user = session('user');
+    $id = $user->id;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +83,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#account-details" role="tab">Account details</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="page-login.html">Logout</a>
+                                                    <a class="nav-link" href="/api/logOff">Logout</a>
                                                 </li>
                                             </ul>
                                         </nav>

@@ -5,7 +5,6 @@ $productsCart = session('cart');
     $productsCart = [];
 }
 $jsonData = session('user');
-var_dump(session('cart')); 
 $data = json_decode($jsonData, true); // The `true` argument makes sure the data is decoded into an associative array
 $id = $data['id'];
 ?>
@@ -269,7 +268,7 @@ $id = $data['id'];
                                                             <div class="cart-item">
                                                                 <div class="info-product">
                                                                     <div class="product-thumbnail">
-                                                                        <img width="600" height="600" src="media/product/3.jpg" alt="">
+                                                                        <img width="600" height="600" src="{{$product['picture']}}" alt="">
                                                                     </div>
                                                                     <div class="product-name">
                                                                         {{$product['item']}}

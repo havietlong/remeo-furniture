@@ -1,9 +1,15 @@
-<?php 
-if(session('cart')){
+<?php
+if (session('cart')) {
     $productsCart = session('cart');
-    }else{
-        $productsCart = [];
-    }
+} else {
+    $productsCart = [];
+}
+?>
+<?php
+if(session('user')){
+    $user = session('user');
+    $id = $user->id;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,46 +76,49 @@ if(session('cart')){
                                 <div class="shop-cart">
                                     <div class="row">
                                         <div class="col-xl-8 col-lg-12 col-md-12 col-12">
-                                            <form class="cart-form" action="#" method="post">
-                                                <div class="table-responsive">
-                                                    <table class="cart-items table" cellspacing="0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="product-thumbnail">Product</th>
-                                                                <th class="product-price">Price</th>
-                                                                <th class="product-quantity">Quantity</th>
-                                                                <th class="product-subtotal">Subtotal</th>
-                                                                <th class="product-remove">&nbsp;</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach($productsCart as $product)
-                                                            <tr class="cart-item">
-                                                                <td class="product-thumbnail">
-                                                                    <a href="shop-details.html">
-                                                                        <img width="600" height="600" src="media/product/3.jpg" class="product-image" alt="">
-                                                                    </a>
-                                                                    <div class="product-name">
-                                                                        <a href="shop-details.html">{{ $product['item'] }}</a>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="product-price">
-                                                                    <span class="price">${{ $product['price'] }}</span>
-                                                                </td>
-                                                                <td class="product-quantity">
-                                                                    <div class="quantity">
-                                                                        <span class="quantity">{{ $product['quantity'] }}</span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="product-subtotal">
-                                                                    <span>${{ $product['subtotal'] }}</span>
-                                                                </td>
-                                                                <td class="product-remove">
-                                                                    <a href="#" class="remove">×</a>
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
-                                                            <!-- <tr class="cart-item">
+
+                                            <div class="table-responsive">
+                                                <table class="cart-items table" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="product-thumbnail">Product</th>
+                                                            <th class="product-price">Price</th>
+                                                            <th class="product-quantity">Quantity</th>
+                                                            <th class="product-subtotal">Subtotal</th>
+                                                            <th class="product-remove">&nbsp;</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 0; ?>
+                                                        @foreach($productsCart as $product)
+                                                        <tr class="cart-item">
+                                                            <td class="product-thumbnail">
+                                                                <a href="shop-details.html">
+                                                                    <img width="600" height="600" src="{{ $product['picture'] }}" class="product-image" alt="">
+                                                                </a>
+                                                                <div class="product-name">
+                                                                    <a href="shop-details.html">{{ $product['item'] }}</a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="product-price">
+                                                                <span class="price">${{ $product['price'] }}</span>
+                                                            </td>
+                                                            <td class="product-quantity">
+                                                                <div class="quantity">
+                                                                    <span class="quantity">{{ $product['quantity'] }}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="product-subtotal">
+                                                                <span>${{ $product['subtotal'] }}</span>
+                                                            </td>
+                                                            <td class="product-remove">
+                                                                <form action="/api/cart/delete/{{$i++}}" method="post">
+                                                                    <button type="submit" style="background-color: transparent;cursor: pointer;"><i class="icon_close"></i></button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        <!-- <tr class="cart-item">
                                                                 <td class="product-thumbnail">
                                                                     <a href="shop-details.html">
                                                                         <img width="600" height="600" src="media/product/1.jpg" class="product-image" alt="">
@@ -135,22 +144,22 @@ if(session('cart')){
                                                                     <a href="#" class="remove">×</a>
                                                                 </td>
                                                             </tr> -->
-                                                            <tr>
-                                                                <td colspan="6" class="actions">
-                                                                    <div class="bottom-cart">
-                                                                        <!-- <div class="coupon">
+                                                        <tr>
+                                                            <td colspan="6" class="actions">
+                                                                <div class="bottom-cart">
+                                                                    <!-- <div class="coupon">
                                                                             <input type="text" name="coupon_code" class="input-text" id="coupon-code" value="" placeholder="Coupon code">
                                                                             <button type="submit" name="apply_coupon" class="button" value="Apply coupon">Apply coupon</button>
                                                                         </div> -->
-                                                                        <h2><a href="shop-grid-left.html">Continue Shopping</a></h2>
-                                                                        <!-- <button type="submit" name="update_cart" class="button" value="Update cart">Update cart</button> -->
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </form>
+                                                                    <h2><a href="/products">Continue Shopping</a></h2>
+                                                                    <!-- <button type="submit" name="update_cart" class="button" value="Update cart">Update cart</button> -->
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                         </div>
                                         <div class="col-xl-4 col-lg-12 col-md-12 col-12">
                                             <div class="cart-totals">
@@ -178,7 +187,7 @@ if(session('cart')){
                                                     </div> -->
                                                     <div class="order-total">
                                                         <div class="title">Total</div>
-                                                        <div><span>$<?=session('total')?></span></div>
+                                                        <div><span>$<?= session('total') ?></span></div>
                                                     </div>
                                                 </div>
                                                 <div class="proceed-to-checkout">
@@ -566,10 +575,10 @@ if(session('cart')){
     <script src="libs/slider/js/draggable-0.1.js"></script>
     <script src="libs/slider/js/jquery.slider.js"></script>
     <script src="libs/elevatezoom/js/jquery.elevatezoom.js"></script>
-    
+
     <!-- Site Scripts -->
     <script src="assets/js/app.js"></script>
-    
+
 </body>
 
 <!-- Mirrored from caketheme.com/html/ruper/index5.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Oct 2023 04:46:26 GMT -->

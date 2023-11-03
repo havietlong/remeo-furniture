@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 
 class CartController extends Controller
 {
@@ -30,6 +31,7 @@ class CartController extends Controller
     $item = $request->input('name');
     $quantity = $request->input('quantity');
     $price = $request->input('price');
+    $picture = $request->input('picture');
 
     // Retrieve the current cart items and total from the session or initialize them if they don't exist
     $cartItems = $request->session()->get('cart', []);
@@ -57,6 +59,7 @@ class CartController extends Controller
         $cartItems[] = [
             'id' => $id,
             'item' => $item,
+            'picture' => $picture,
             'quantity' => $quantity,
             'price' => $price,
             'subtotal' => $subtotal,
@@ -115,8 +118,26 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request,String $itemKey)
     {
-        
+         // Get the cart items from the session
+    $cartItems = $request->session()->get('cart', []);
+
+    // Check if the item key to delete is valid
+    if (isset($cartItems[$itemKey])) {
+        // Calculate the total
+        $total = $request->session()->get('total', 0) - $cartItems[$itemKey]['subtotal'];
+
+        // Remove the item from the cart
+        unset($cartItems[$itemKey]);
+
+        // Store the updated cart array and total back into the session
+        $request->session()->put('cart', $cartItems);
+        $request->session()->put('total', $total);
     }
+
+    return redirect()->back();
+    }
+
+   
 }

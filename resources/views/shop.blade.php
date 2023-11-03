@@ -1,4 +1,9 @@
-
+<?php
+if(session('user')){
+    $user = session('user');
+    $id = $user->id;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,7 +131,7 @@
                                                                 </div>
                                                                 <div class="products-content">
                                                                     <div class="contents text-center">
-                                                                        <h3 class="product-title"><a href="shop-details.html">{{ $product->name }}</a></h3>
+                                                                        <h3 class="product-title"><a href="/shop-details/{{ $product->id }}">{{ $product->name }}</a></h3>
                                                                         <span class="price">${{ $product->price }}</span>
                                                                     </div>
                                                                 </div>

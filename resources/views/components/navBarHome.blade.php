@@ -1,6 +1,15 @@
-<?php 
-$user = session('user');
-$id = $user->id;
+<?php
+if (session('user')) {
+    $user = session('user');
+    $id = $user->id;
+}
+?>
+<?php
+if (session('cart')) {
+    $productsCart = session('cart');
+} else {
+    $productsCart = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -355,87 +364,84 @@ $id = $user->id;
                         <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 header-right">
                             <div class="header-page-link">
                                 <!-- Login -->
-                                <div class="login-header">
-                                    <a class="active-login" style="cursor: pointer;">Login</a>
-                                    <div class="form-login-register">
-                                        <div class="box-form-login">
-                                            <div class="active-login"></div>
-                                            <div class="box-content">
-                                                <div class="form-login active">
-                                                    <form id="login_ajax" action="/api/login/validate" method="post" class="login">
-                                                        <h2>Sign in</h2>
-                                                        <p class="status"></p>
-                                                        <div class="content">
-                                                            <div class="username">
-                                                                <input type="text" required="required" class="input-text" name="email" id="email" placeholder="Your name" />
-                                                            </div>
-                                                            <div class="password">
-                                                                <input class="input-text" required="required" type="password" name="password" id="password" placeholder="Password" />
-                                                            </div>
-                                                            <div class="rememberme-lost">
-                                                                <div class="rememberme">
-                                                                    <input name="rememberme" type="checkbox" id="rememberme" value="forever" />
-                                                                    <label for="rememberme" class="inline">Remember me</label>
+                                <?php if (!session('user')) { ?>
+                                    <div class="login-header">
+                                        <a class="active-login" style="cursor: pointer;">Login</a>
+                                        <div class="form-login-register">
+                                            <div class="box-form-login">
+                                                <div class="active-login"></div>
+                                                <div class="box-content">
+                                                    <div class="form-login active">
+                                                        <form id="login_ajax" action="/api/login/validate" method="post" class="login">
+                                                            <h2>Sign in</h2>
+                                                            <p class="status"></p>
+                                                            <div class="content">
+                                                                <div class="username">
+                                                                    <input type="text" required="required" class="input-text" name="email" id="email" placeholder="Your name" />
                                                                 </div>
-                                                                <div class="lost_password">
-                                                                    <a href="forgot-password.html">Lost your password?</a>
+                                                                <div class="password">
+                                                                    <input class="input-text" required="required" type="password" name="password" id="password" placeholder="Password" />
                                                                 </div>
+                                                                <div class="rememberme-lost">
+                                                                    <div class="rememberme">
+                                                                        <input name="rememberme" type="checkbox" id="rememberme" value="forever" />
+                                                                        <label for="rememberme" class="inline">Remember me</label>
+                                                                    </div>
+                                                                    <div class="lost_password">
+                                                                        <a href="forgot-password.html">Lost your password?</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="button-login">
+                                                                    <input type="submit" class="button" name="login" value="Login" />
+                                                                </div>
+                                                                <div class="button-next-reregister">Create An Account</div>
                                                             </div>
-                                                            <div class="button-login">
-                                                                <input type="submit" class="button" name="login" value="Login" />
+                                                        </form>
+                                                    </div>
+                                                    <div class="form-register">
+                                                        <form method="post" class="register">
+                                                            <h2>REGISTER</h2>
+                                                            <div class="content">
+                                                                <div class="email">
+                                                                    <input type="email" class="input-text" placeholder="Email" name="email" id="reg_email" value="" />
+                                                                </div>
+                                                                <div class="password">
+                                                                    <input type="password" class="input-text" placeholder="Password" name="password" id="reg_password" />
+                                                                </div>
+                                                                <div class="button-register">
+                                                                    <input type="submit" class="button" name="register" value="Register" />
+                                                                </div>
+                                                                <div class="button-next-login">Already has an account</div>
                                                             </div>
-                                                            <div class="button-next-reregister">Create An Account</div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="form-register">
-                                                    <form method="post" class="register">
-                                                        <h2>REGISTER</h2>
-                                                        <div class="content">
-                                                            <div class="email">
-                                                                <input type="email" class="input-text" placeholder="Email" name="email" id="reg_email" value="" />
-                                                            </div>
-                                                            <div class="password">
-                                                                <input type="password" class="input-text" placeholder="Password" name="password" id="reg_password" />
-                                                            </div>
-                                                            <div class="button-register">
-                                                                <input type="submit" class="button" name="register" value="Register" />
-                                                            </div>
-                                                            <div class="button-next-login">Already has an account</div>
-                                                        </div>
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <?php if(session('user')){ ?>
-                                <div class="search-box">
-                                    <a href="/user/{{$id}}"><div class="search-toggle"><i class='bx bx-user-circle' style="font-size: 25px;"></i></div></a>
-                                </div>
+                                <?php } else {
+                                ?>
+                                    <div class="login-header">
+                                        <a href="/api/logOff" style="cursor: pointer;">Log Out</a>
+                                    </div>
+                                <?php
+                                } ?>
+                                <?php if (session('user')) { ?>
+                                    <div class="search-box">
+                                        <a href="/user/{{$id}}">
+                                            <div class="search-toggle"><i class='bx bx-user-circle' style="font-size: 25px;"></i></div>
+                                        </a>
+                                    </div>
                                 <?php } ?>
-                                
-                                <div class="search-box">
-                                    <div class="search-toggle"><i class="person-circle"></i></div>
-                                </div>
 
-                                <!-- Search -->
-                                <div class="search-box">
-                                    <div class="search-toggle"><i class="icon-search"></i></div>
-                                </div>
 
-                                <!-- Wishlist -->
-                                <div class="wishlist-box">
-                                    <a href="shop-wishlist.html"><i class="icon-heart"></i></a>
-                                    <span class="count-wishlist">1</span>
-                                </div>
 
                                 <!-- Cart -->
                                 <div class="ruper-topcart dropdown light">
                                     <div class="dropdown mini-cart top-cart">
                                         <div class="remove-cart-shadow"></div>
                                         <a class="dropdown-toggle cart-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="icons-cart"><i class="icon-large-paper-bag"></i><span class="cart-count">2</span></div>
+                                            <div class="icons-cart"><i class="icon-large-paper-bag"></i></div>
                                         </a>
                                         <div class="dropdown-menu cart-popup">
                                             <div class="cart-empty-wrap">
@@ -448,34 +454,28 @@ $id = $user->id;
                                             </div>
                                             <div class="cart-list-wrap">
                                                 <ul class="cart-list ">
-                                                    <li class="mini-cart-item">
-                                                        <a href="#" class="remove" title="Remove this item"><i class="icon_close"></i></a>
-                                                        <a href="shop-details.html" class="product-image"><img width="600" height="600" src="media/product/3.jpg" alt=""></a>
-                                                        <a href="shop-details.html" class="product-name">Chair Oak Matt Lacquered</a>
-                                                        <div class="quantity">Qty: 1</div>
-                                                        <div class="price">$150.00</div>
+                                                    <?php $i = 0; ?>
+                                                    @foreach($productsCart as $product)
+                                                    <li class="mini-cart-item" style="display: flex;">
+
+                                                        <div class="product-mini" style="width: 100%;">
+                                                            <a href="shop-details.html" class="product-image"><img width="600" height="600" src="{{ $product['picture'] }}" alt=""></a>
+                                                            <a href="shop-details.html" class="product-name">{{ $product['item'] }}</a>
+                                                            <div class="quantity">Qty: {{ $product['quantity'] }}</div>
+                                                            <div class="price">${{ $product['price'] }}</div>
+                                                        </div>
+                                                        <div class="removeButton">
+                                                            <form action="/api/cart/delete/{{$i++}}" method="post">
+                                                                <button type="submit" style="background-color: transparent;cursor: pointer;"><i class="icon_close"></i></button>
+                                                            </form>
+                                                        </div>
                                                     </li>
-                                                    <li class="mini-cart-item">
-                                                        <a href="#" class="remove" title="Remove this item"><i class="icon_close"></i></a>
-                                                        <a href="shop-details.html" class="product-image"><img width="600" height="600" src="media/product/1.jpg" alt=""></a>
-                                                        <a href="shop-details.html" class="product-name">Zunkel Schwarz</a>
-                                                        <div class="quantity">Qty: 1</div>
-                                                        <div class="price">$100.00</div>
-                                                    </li>
+                                                    @endforeach
                                                 </ul>
-                                                <div class="total-cart">
-                                                    <div class="title-total">Total: </div>
-                                                    <div class="total-price"><span>$100.00</span></div>
-                                                </div>
-                                                <div class="free-ship">
-                                                    <div class="title-ship">Buy <strong>$400</strong> more to enjoy <strong>FREE Shipping</strong></div>
-                                                    <div class="total-percent">
-                                                        <div class="percent" style="width:20%"></div>
-                                                    </div>
-                                                </div>
+
                                                 <div class="buttons">
-                                                    <a href="shop-cart.html" class="button btn view-cart btn-primary">View cart</a>
-                                                    <a href="shop-checkout.html" class="button btn checkout btn-default">Check out</a>
+                                                    <a href="/cart" class="button btn view-cart btn-primary">View cart</a>
+                                                    <a href="/checkOut" class="button btn checkout btn-default">Check out</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,8 +1,8 @@
 <?php
-if(session('cart')){
-$productsCart = session('cart');
-}else{
-$productsCart = [];
+if (session('cart')) {
+    $productsCart = session('cart');
+} else {
+    $productsCart = [];
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ $productsCart = [];
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 header-center">
                         <div class="site-logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <img width="400" height="79" src="media/logo.png" alt="Ruper – Furniture HTML Theme" />
                             </a>
                         </div>
@@ -115,7 +115,7 @@ $productsCart = [];
                     <div class="row">
                         <div class="col-xl-3 col-lg-2 col-md-12 col-sm-12 col-12 header-left">
                             <div class="site-logo">
-                                <a href="index5.html">
+                                <a href="/">
                                     <img width="400" height="79" src="media/logo.png" alt="Ruper – Furniture HTML Theme" />
                                 </a>
                             </div>
@@ -352,6 +352,7 @@ $productsCart = [];
                         <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 header-right">
                             <div class="header-page-link">
                                 <!-- Login -->
+                                <?php if(!session('user')){ ?>
                                 <div class="login-header">
                                     <a class="active-login" style="cursor: pointer;">Login</a>
                                     <div class="form-login-register">
@@ -406,24 +407,21 @@ $productsCart = [];
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Search -->
+                                <?php } ?>
+                                <?php if(session('user')){ ?>
                                 <div class="search-box">
-                                    <div class="search-toggle"><i class="icon-search"></i></div>
+                                    <a href="/user/{{$id}}"><div class="search-toggle"><i class='bx bx-user-circle' style="font-size: 25px;"></i></div></a>
                                 </div>
+                                <?php } ?>
 
-                                <!-- Wishlist -->
-                                <div class="wishlist-box">
-                                    <a href="shop-wishlist.html"><i class="icon-heart"></i></a>
-                                    <span class="count-wishlist">1</span>
-                                </div>
+                                
 
                                 <!-- Cart -->
                                 <div class="ruper-topcart dropdown light">
                                     <div class="dropdown mini-cart top-cart">
                                         <div class="remove-cart-shadow"></div>
                                         <a class="dropdown-toggle cart-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="icons-cart"><i class="icon-large-paper-bag"></i><span class="cart-count">2</span></div>
+                                            <div class="icons-cart"><i class="icon-large-paper-bag"></i></div>
                                         </a>
                                         <div class="dropdown-menu cart-popup">
                                             <div class="cart-empty-wrap">
@@ -436,13 +434,21 @@ $productsCart = [];
                                             </div>
                                             <div class="cart-list-wrap">
                                                 <ul class="cart-list ">
+                                                    <?php $i = 0; ?>
                                                     @foreach($productsCart as $product)
-                                                    <li class="mini-cart-item">
-                                                        <a href="#" class="remove" title="Remove this item"><i class="icon_close"></i></a>
-                                                        <a href="shop-details.html" class="product-image"><img width="600" height="600" src="media/product/3.jpg" alt=""></a>
-                                                        <a href="shop-details.html" class="product-name">{{ $product['item'] }}</a>
-                                                        <div class="quantity">Qty: {{ $product['quantity'] }}</div>
-                                                        <div class="price">${{ $product['price'] }}</div>
+                                                    <li class="mini-cart-item" style="display: flex;">
+                                                        
+                                                        <div class="product-mini" style="width: 100%;">
+                                                            <a href="shop-details.html" class="product-image"><img width="600" height="600" src="{{ $product['picture'] }}" alt=""></a>
+                                                            <a href="shop-details.html" class="product-name">{{ $product['item'] }}</a>
+                                                            <div class="quantity">Qty: {{ $product['quantity'] }}</div>
+                                                            <div class="price">${{ $product['price'] }}</div>
+                                                        </div>
+                                                        <div class="removeButton">
+                                                            <form action="/api/cart/delete/{{$i++}}" method="post">
+                                                                <button type="submit" style="background-color: transparent;cursor: pointer;"><i class="icon_close"></i></button>
+                                                            </form>
+                                                        </div>
                                                     </li>
                                                     @endforeach
                                                 </ul>

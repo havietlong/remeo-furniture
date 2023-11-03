@@ -24,9 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/login')->group(function () {
     Route::post('/validate', [UserController::class, 'validateLogin']);
 });
+Route::get('/logOff', [UserController::class, 'destroy']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::prefix('/cart')->group(function () {
     Route::post('/add', [CartController::class, 'store']);
+    Route::post('/delete/{itemKey}', [CartController::class, 'destroy']);
     Route::get('/reset', [CartController::class, 'reset']);
 });
 
